@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>魔法公主：幽影森林語詞挑戰</title>
+<style>
+  :root {
+    --bg-color: #2c3e2c; /* 森林深綠 */
+    --text-color: #f0e6d2; /* 米色文字 */
+    --accent-color: #e74c3c; /* 紅色底線與強調 */
+    --box-color: #4a6b4a; /* 區塊背景 */
+    --success-color: #2ecc71; /* 成功綠 */
+    --error-color: #e74c3c; /* 錯誤紅 */
+  }
+
+  body {
+    font-family: "Microsoft JhengHei", Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .instruction {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .game-container {
+    background-color: var(--box-color);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    max-width: 900px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .story-text {
+    font-size: 1.8rem;
+    line-height: 2.2;
+    text-align: justify;
+  }
+
+  /* 放置區域樣式 */
+  .dropzone {
+    display: inline-block;
+    min-width: 120px;
+    border-bottom: 3px solid var(--accent-color);
+    margin: 0 5px;
+    padding: 2px 5px;
+    text-align: center;
+    color: transparent; /* 隱藏原始文字 */
+    transition: all 0.3s ease;
+  }
+
+  .dropzone.over {
+    background-color: rgba(231, 76, 60, 0.3);
+  }
+
+  .dropzone.correct {
+    border-bottom: 3px solid var(--success-color);
+    color: var(--success-color);
+    font-weight: bold;
+  }
+
+  .dropzone.wrong {
+    border-bottom: 3px solid var(--error-color);
+    color: var(--error-color);
+    font-weight: bold;
+  }
+
+  /* 語詞卡片區域 */
+  .word-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  /* 可拖曳卡片樣式 */
+  .draggable {
+    background-color: var(--text-color);
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: grab;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+  }
+
+  .draggable:active {
+    cursor: grabbing;
+    transform: scale(0.98);
+  }
+
+  .draggable.placed {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* 按鈕與回饋 */
+  .check-btn {
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 1.8rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+    transition: background-color 0.3s, transform 0.1s;
+  }
+
+  .check-btn:hover {
+    background-color: #c0392b;
+  }
+
+  .check-btn:active {
+    transform: translateY(2px);
+  }
+
+  #feedback {
+    margin-top: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    min-height: 1.8rem;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>魔法公主：幽影森林語詞挑戰</h1>
+  <p class="instruction">阿席達卡：請協助我們將失落的語詞歸位，恢復森林的秩序！(拖曳下方語詞至紅線上)</p>
+
+  <div class="game-container">
+    <div class="story-text">
+      <p>在那片被世人<span class="dropzone" data-word="棄置"></span>已久的古老幽影森林邊緣，住著一位被稱為<span class="dropzone" data-word="達駭"></span>的智者。他的左臂上有一道怵目驚心的<span class="dropzone" data-word="疤痕"></span>，傳說那是他年輕時平息山神憤怒所留下的印記，因此部落裡的孩子們都非常<span class="dropzone" data-word="崇拜"></span>他。</p>
+      <p>一個悶熱的午後，天空突然變色，大雨<span class="dropzone" data-word="傾盆"></span>而下。為了躲避這場豪雨，我和達駭躲進了一個巨大的樹洞。洞穴深處不斷傳來奇怪的「<span class="dropzone" data-word="咚咚"></span>」聲，聽起來很不尋常。達駭決定帶我深入洞穴去<span class="dropzone" data-word="碰運氣"></span>，看看能否找到聲音的來源。</p>
+      <p>在微弱的<span class="dropzone" data-word="營火"></span>照耀下，我們驚見一隻巨大的山犬神倒臥在地，牠<span class="dropzone" data-word="奄奄一息"></span>，痛苦地張大嘴巴，<span class="dropzone" data-word="喉嚨"></span>裡卡著一個人類丟棄的生鏽<span class="dropzone" data-word="鐵罐"></span>。達駭示意我保持安靜，他自己則<span class="dropzone" data-word="小心翼翼"></span>地靠近山犬神，伸出雙手試圖取出異物。</p>
+      <p>就在鐵罐被取出的瞬間，山犬神爆發出一聲驚天動地的<span class="dropzone" data-word="吼聲"></span>，震得洞穴頂端的碎石紛紛落下。我們嚇得閉上眼<span class="dropzone" data-word="祈禱"></span>奇蹟發生。幸運的是，山犬神並沒有攻擊我們，牠恢復了平靜，深深看了達駭一眼後，轉身消失在黑暗中。</p>
+    </div>
+  </div>
+
+  <div class="word-bank" id="wordBank">
+    </div>
+
+  <button class="check-btn" onclick="checkAnswers()">檢查任務結果</button>
+  <div id="feedback"></div>
+
+<script>
+  const words = [
+    "棄置", "達駭", "疤痕", "崇拜", 
+    "傾盆", "咚咚", "碰運氣", 
+    "營火", "奄奄一息", "喉嚨", "鐵罐", "小心翼翼", 
+    "吼聲", "祈禱"
+  ];
+  
+  // Shuffle function
+  function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  }
+
+  // Initialize Word Bank
+  const wordBank = document.getElementById('wordBank');
+  shuffle([...words]).forEach(word => {
+    const el = document.createElement('div');
+    el.classList.add('draggable');
+    el.setAttribute('draggable', 'true');
+    el.innerText = word;
+    el.id = 'word-' + word;
+    wordBank.appendChild(el);
+  });
+
+  // Drag and Drop Logic
+  let draggedItem = null;
+  const draggables = document.querySelectorAll('.draggable');
+  const dropzones = document.querySelectorAll('.dropzone');
+
+  draggables.forEach(draggable => {
+    draggable.addEventListener('dragstart', function() {
+      draggedItem = this;
+      setTimeout(() => this.style.opacity = '0.5', 0);
+    });
+    draggable.addEventListener('dragend', function() {
+      this.style.opacity = '1';
+      draggedItem = null;
+      dropzones.forEach(dz => dz.classList.remove('over'));
+    });
+  });
+
+  dropzones.forEach(dropzone => {
+    dropzone.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      this.classList.add('over');
+    });
+
+    dropzone.addEventListener('dragleave', function() {
+      this.classList.remove('over');
+    });
+
+    dropzone.addEventListener('drop', function(e) {
+      this.classList.remove('over');
+      if (this.innerText !== "") {
+        // If there is already a word, return it to bank
+        const existingWord = this.innerText;
+        const existingDraggable = document.getElementById('word-' + existingWord);
+        if(existingDraggable) existingDraggable.classList.remove('placed');
+      }
+      this.innerText = draggedItem.innerText;
+      this.style.color = "var(--text-color)"; // Make text visible
+      draggedItem.classList.add('placed');
+    });
+    
+    // Click to clear text back to bank
+    dropzone.addEventListener('click', function() {
+        if(this.innerText !== "") {
+            const text = this.innerText;
+            const draggable = document.getElementById('word-' + text);
+            if(draggable) draggable.classList.remove('placed');
+            this.innerText = "";
+            this.style.color = "transparent";
+            this.classList.remove('correct', 'wrong');
+        }
+    });
+  });
+
+  // Check Function
+  function checkAnswers() {
+    let correctCount = 0;
+    let totalCount = dropzones.length;
+    let allFilled = true;
+
+    dropzones.forEach(dropzone => {
+      if (dropzone.innerText === "") {
+        allFilled = false;
+        dropzone.classList.remove('correct', 'wrong');
+      } else if (dropzone.innerText === dropzone.dataset.word) {
+        dropzone.classList.add('correct');
+        dropzone.classList.remove('wrong');
+        correctCount++;
+      } else {
+        dropzone.classList.add('wrong');
+        dropzone.classList.remove('correct');
+      }
+    });
+
+    const feedback = document.getElementById('feedback');
+    if (!allFilled) {
+      feedback.innerText = "小桑：還有空缺的語詞，請完成所有填空後再檢查！";
+      feedback.style.color = "var(--text-color)";
+    } else if (correctCount === totalCount) {
+      feedback.innerText = "山神：做得好！你成功恢復了森林的秩序！(全對)";
+      feedback.style.color = "var(--success-color)";
+    } else {
+      feedback.innerText = `達駭：還差一點點，請再仔細觀察森林的跡象。(答對 ${correctCount} / ${totalCount} 題)`;
+      feedback.style.color = "var(--error-color)";
+    }
+  }
+</script>
+
+</body>
+</html>
